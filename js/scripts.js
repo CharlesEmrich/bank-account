@@ -25,14 +25,17 @@ $(function() {
     event.preventDefault();
     account = new BankAccount(
         $("input[name=name]").val(),
-        $("input[name=initial]").val()
+        parseInt($("input[name=initial]").val())
     )
     update();
   });
 
   $("form#transaction-form").submit(function(event) {
     event.preventDefault();
-
-
+    if (typeof account === "object") {
+      account.withdraw(parseInt($("input[name=withdraw]").val()));
+      account.deposit(parseInt($("input[name=deposit]").val()));
+      update();
+    }
   });
 });
