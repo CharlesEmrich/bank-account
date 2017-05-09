@@ -4,6 +4,15 @@ function BankAccount(name, initialDeposit) {
   this.amount = initialDeposit;
 }
 
+BankAccount.prototype.withdraw = function (delta) {
+  this.amount -= delta;
+//Extend this by adding logic to account for negative balances: refusing to overdraw, etc.
+};
+
+BankAccount.prototype.deposit = function (delta) {
+  this.amount += delta;
+};
+
 /// User Interface Logic ///
 $(function() {
   var account;
@@ -18,11 +27,12 @@ $(function() {
         $("input[name=name]").val(),
         $("input[name=initial]").val()
     )
-
     update();
   });
-  // $("form#transaction-form").submit(function(event) {
-  //   event.preventDefault();
-  //
-  // });
+
+  $("form#transaction-form").submit(function(event) {
+    event.preventDefault();
+
+
+  });
 });
